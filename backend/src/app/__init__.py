@@ -11,6 +11,8 @@ def create_app():
 
     db.init_app(app)
 
+    app.json.ensure_ascii = False
+
     app.register_blueprint(lesson_plan_bp, url_prefix="/api")
 
     with app.app_context():
