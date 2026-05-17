@@ -2,5 +2,6 @@
 .venv
 .git
 .vscode
+.flake8
 __pycache__
 

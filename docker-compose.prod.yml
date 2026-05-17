@@ -3,15 +3,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
+    image: api:latest
     ports:
       - "${APP_PORT}:8000"
     depends_on: 
-      - db:
-    #environment:
-    #  - DB_HOST=db
-    #  - DB_NAME=${POSTGRES_DB}
-    #  - DB_USER=${POSTGRES_USER}
-    #  - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${POSTGRES_DB}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
     restart: always
 
   db:
