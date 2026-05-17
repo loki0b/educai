@@ -1,21 +1,32 @@
 services:
   api:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.dev
     image: api:latest
     ports:
-      - "${APP_PORT}:5000"
+      - "${API_PORT}:5000"
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on: 
       - db
     environment:
       - FLASK_APP=${FLASK_APP}
+      - PYTHONPATH=/app/src
       - DB_HOST=db
       - DB_NAME=${POSTGRES_DB}
       - DB_USER=${POSTGRES_USER}
       - DB_PASSWORD=${POSTGRES_PASSWORD}
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "${FRONT_PORT}:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
 
   db:
     image: postgres:17.10
