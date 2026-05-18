@@ -4,7 +4,18 @@ from app.controllers.db import db
 
 
 class LessonPlanController:
-    # def get_all(self):
+    def get_all(self):
+        items = LessonPlan.query.all()
+
+        return (
+            jsonify(
+                [
+                    {c.name: getattr(item, c.name) for c in item.__table__.columns}
+                    for item in items
+                ]
+            ),
+            200,
+        )
 
     def create(self):
         data = request.json
