@@ -16,12 +16,14 @@ services:
       - DB_HOST=db
       - DB_NAME=${POSTGRES_DB}
       - DB_USER=${POSTGRES_USER}
+      - DB_PORT=${DB_PORT}
       - DB_PASSWORD=${POSTGRES_PASSWORD}
   
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
+    image: frontend:latest
     ports:
       - "${FRONT_PORT}:3000"
     volumes:
