@@ -6,8 +6,11 @@ on:
         - main
 
 jobs:
-  ci:
+  ci-backend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - name: Cloning
         uses: actions/checkout@v4
@@ -18,7 +21,6 @@ jobs:
           python-version: '3.14'
         
       - name: Installing dependencies
-        working-directory: ./backend
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -30,9 +32,18 @@ jobs:
 
       - name: Running flake8
         run: python -m flake8 src
+  
+  ci-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Cloning
+        uses: actions/checkout@v4
 
   cd:
-    needs: ci
+    needs: [ci-backend, ci-frontend]
     runs-on: ubuntu-latest
     steps:
       - name: Cloning
