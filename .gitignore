@@ -1,7 +1,17 @@
 .env
+.env.local
+.env.*.local
+
+logs
+*.log
+npm-debug.log*
+
 .venv
 .git
 .vscode
 .flake8
+
+.vscode/
 __pycache__
 node_modules/
+dist/
