@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from app.controllers.db import db
 from app.routes.lesson_plan_routes import lesson_plan_bp
 from app.routes.smart_assist_routes import smart_assist_bp
@@ -7,6 +8,7 @@ from config import Config
 
 def create_app():
     app = Flask(__name__)
+    CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
     app.config.from_object(Config)
 
