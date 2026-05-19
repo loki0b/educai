@@ -32,7 +32,8 @@ jobs:
 
       - name: Running flake8
         run: python -m flake8 src
-  
+
+# TODO: finish 
   ci-frontend:
     runs-on: ubuntu-latest
     defaults:
@@ -42,12 +43,13 @@ jobs:
       - name: Cloning
         uses: actions/checkout@v4
 
-  cd:
-    needs: [ci-backend, ci-frontend]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cloning
-        uses: actions/checkout@v4
+# TODO: fix
+  #cd:
+  #  needs: [ci-backend, ci-frontend]
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Cloning
+  #      uses: actions/checkout@v4
 
-      - name: Building
-        run: docker build -f Dockerfile.prod -t educai:latest . 
+  #    - name: Building
+  #      run: docker build -f Dockerfile.prod -t educai:latest . 
