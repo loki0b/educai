@@ -1,4 +1,4 @@
-async function genContent(data: any) {
+async function genContent(data) {
     try {
         const response = await fetch("http://localhost:5000/api/genContent", {
             method: "POST",
@@ -13,7 +13,7 @@ async function genContent(data: any) {
         const result = await response.json();
 
         return result; 
-    } catch (err: any) {
+    } catch (err) {
         console.log(err);
     } 
 }

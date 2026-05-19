@@ -1,7 +1,7 @@
 export default function Title() {
     return (
-        <div>
+        <h1 className="font-semibold text-xl">
             Title
-        </div>
+        </h1>
     )
 }
