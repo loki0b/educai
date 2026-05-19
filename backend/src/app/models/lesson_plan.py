@@ -11,5 +11,5 @@ class LessonPlan(db.Model):
     scheduled_date = db.Column(db.Date, nullable=False)
     subject = db.Column(db.String(100), nullable=False)
     contents = db.Column(db.Text, nullable=False)
-    learning_resources = db.Column(db.Text)
-    tags = db.Column(db.String(200))
+    learning_resources = db.Column(ARRAY(db.Text))
+    tags = db.Column(ARRAY(db.String(200)))
