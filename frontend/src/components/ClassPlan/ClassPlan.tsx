@@ -7,10 +7,12 @@ import TagContainer from "./TagContainer.js";
 
 export default function ClassPlan() {
     return (
-        <div className="flex-col">
+        <div className="flex flex-col gap-1 justify-center w-68 h-53 bg-white shadow-lg shadow-neutral-400 p-8">
             <Title />
-            <Subject />
-            <ScheduledDate />
+            <div className="flex gap-2 items-center">
+                <Subject />
+                <ScheduledDate />
+            </div>
             <TextBox />
             <TagContainer/>
         </div>

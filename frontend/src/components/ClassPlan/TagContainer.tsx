@@ -10,7 +10,7 @@ export default function TagContainer() {
     ]
     
     return (
-        <div className="flex gap-2 items-center max-w-100">
+        <div className="flex gap-2 items-center">
             {list.map((listItem) => (
                 <Tag key={listItem.id}/>
             ))}
