@@ -1,4 +1,5 @@
 from app.controllers.db import db
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 class LessonPlan(db.Model):
