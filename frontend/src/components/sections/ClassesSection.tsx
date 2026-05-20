@@ -4,61 +4,78 @@ import { useState, useEffect } from "react";
 
 interface Class {
     id: number;
+    title: string;
+    objective: string;
+    subject: string;
+    scheduled_date?: string;
+    contents?: string;
+    tags?: string[];
 }
 
-export default function ClassesSection(){
-    const classes: Class[] = [
-        {id: 1},
-        {id: 2},
-        {id: 3},
-        {id: 4},
-        {id: 5},
-        {id: 6},
-        {id: 7},
-        {id: 8},
-        {id: 9},
-        {id: 10},
-        {id: 11},
-        {id: 12},
-        {id: 13},
-        {id: 14},
-        {id: 15},
-        {id: 16}
-    ]
-    const maxPages = Math.ceil(classes.length / 8)
+interface ClassesSectionProps {
+    classe: Class[];
+    loading: boolean;
+    error: string | null;
+}
+
+export default function ClassesSection({ classe, loading, error }: ClassesSectionProps) {
+    const [curPage, setCurPage] = useState(0); 
+
+    const maxPages = Math.ceil(classe.length / 8);
     const pages: Class[][] = Array.from({ length: maxPages }, (_, index) => {
         const start = index * 8;
-        return classes.slice(start, start + 8);
-        });
+        return classe.slice(start, start + 8);
+    });
     
-    const [curPage, setCurPage] = useState(0)
-    
-    const handleTurnPage = (page: number) => (
-        setCurPage(page)
-    )
-    return (
-        <div className="max-w-7xl w-full flex flex-col items-center">
-            {
-                pages.map((page, index) => (
-                        <div key={index} className="flex flex-wrap gap-5.5">
-                            {
-                                curPage === index && (
-                                    page.map((classes) => (
-                                    <ClassPlan key={classes.id}/>
-                                ))
-                                )
-                            }
-                        </div>
-                        
-                ))
-            }
-            <div className="flex gap-2 mt-8">
-                {
-                    pages.map((page, index) => (
-                        <p className={`cursor-pointer ${curPage === index ? 'text-neutral-600': 'text-neutral-400'}`} key={index} onClick={() => handleTurnPage(index)}>{index + 1}</p>
-                    ))
-                }
+    useEffect(() => {
+        if (curPage >= maxPages && maxPages > 0) {
+            setCurPage(maxPages - 1);
+        }
+    }, [classe.length, maxPages, curPage]);
+
+    if (error) {
+        return (
+            <div className="text-red-500 py-12 text-center">
+                <p>Erro ao carregar dados: {error}</p>
             </div>
+        );
+    }
+
+    return (
+        <div className="max-w-7xl w-full flex flex-col justify-center items-center">
+            {!loading && pages.map((page, index) => (
+                curPage === index && (
+                    <div key={index} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5.5 w-full">
+                        {page.map((item) => (
+                            <ClassPlan key={item.id} data={item}/>
+                        ))}
+                    </div>
+                )
+            ))}
+
+            {!loading && maxPages > 1 && (
+                <div className="flex gap-2 mt-8 select-none">
+                    {pages.map((_, index) => (
+                        <p 
+                            className={`cursor-pointer px-2 py-1 rounded text-sm transition-colors ${
+                                curPage === index ? 'text-neutral-900 font-bold bg-neutral-200' : 'text-neutral-400 hover:text-neutral-600'
+                            }`} 
+                            key={index} 
+                            onClick={() => setCurPage(index)}
+                        >
+                            {index + 1}
+                        </p>
+                    ))}
+                </div>
+            )}
+
+            {classe.length === 0 && !loading && (
+                <p className="text-neutral-400 py-12">Nenhum plano de aula cadastrado.</p>
+            )}
+
+            {loading && (
+                <p className="text-neutral-400 animate-pulse py-12">Carregando planos de aula...</p>
+            )}
         </div>
-    )
+    );
 }

@@ -1,5 +1,5 @@
-export default function Tag() {
+export default function Tag({tag}: {tag: string}) {
     return (
-        <div className="bg-blue-500 text-sm text-white min-w-10 max-w-16 px-2 text-center">Tag</div>
+        <div className="bg-blue-500 text-sm text-white min-w-10 max-w-16 px-2 text-center">{tag}</div>
     )
 }

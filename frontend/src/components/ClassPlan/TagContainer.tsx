@@ -1,18 +1,11 @@
 import Tag from "./Tag.js";
 
-export default function TagContainer() {
-    const list = [
-
-        {id: 1},
-        {id: 2},
-        {id: 3}
-
-    ]
-    
+export default function TagContainer({tags}: {tags: string[]}) {
+    const myTags = tags.slice(0,2)
     return (
         <div className="flex gap-2 items-center">
-            {list.map((listItem) => (
-                <Tag key={listItem.id}/>
+            {myTags.map((listItem, index) => (
+                <Tag key={index} tag={listItem}/>
             ))}
         </div>
     )

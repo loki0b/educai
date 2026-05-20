@@ -1,7 +1,7 @@
-export default function Subject() {
+export default function Subject({sub}: {sub: string}) {
     return (
         <div className="bg-orange-400 text-white px-2 min-w-8 text-center truncate max-w-16 text-sm">
-            Subject
+            {sub}
         </div>
     )
 }
