@@ -2,7 +2,7 @@
 
 O **Educaí** é uma aplicação web desenvolvida para auxiliar professores na criação, gerenciamento e organização de Planos de Aula. A plataforma conta com um assistente inteligente integrado (utilizando a API do Google Gemini) que gera recomendações de conteúdos, recursos de apoio e tags com base no título, disciplina e ementa fornecidos pelo usuário.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Backend
 - **Python**
@@ -91,7 +91,7 @@ Tabela `lesson_plans`:
 ### IA (`/api`)
 - `POST /genContent`: Retorna sugestões da IA para conteúdo, recursos e tags.
 
-## 🛠️ Pipeline CI
+## Pipeline CI
 
 Workflow configurado no GitHub Actions (`.github/workflows/pipeline.yml`):
 - **ci-backend:** Validação com `Black` e `Flake8`.
