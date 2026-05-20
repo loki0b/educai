@@ -44,16 +44,22 @@ O **Educaí** é uma aplicação web desenvolvida para auxiliar professores na c
 
 2. Crie um arquivo `.env` na raiz do projeto:
    ```env
-   API_PORT=5000
-   FLASK_APP=app.py
-   GOOGLE_API_KEY=sua_chave_de_api
+API_PORT=5000
+FRONT_PORT=3000
 
-   POSTGRES_USER=postgres
-   POSTGRES_PASSWORD=sua_senha
-   POSTGRES_DB=educai_db
-   DB_PORT=5432
+DB_USER=user
+DB_PASSWORD=pass
+DB_HOST=db
+DB_PORT=5432
+DB_NAME=educai
 
-   FRONT_PORT=3000
+POSTGRES_USER=user
+POSTGRES_PASSWORD=pass
+POSTGRES_DB=educai
+
+FLASK_APP=backend/src/app.py
+
+GOOGLE_API_KEY=api_key
    ```
 
 3. Suba os containers:
